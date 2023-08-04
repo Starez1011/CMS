@@ -10,8 +10,16 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $email= $_POST["email"];
     $password = md5($_POST["password"]);
     $re_pass = md5($_POST["repassword"]);
+
+    $quer = "SELECT email from users where email = '$email'";
+    $data = mysqli_query($conn,$quer);
+    $num = mysqli_num_rows($data);
+    
     
     $errors = [];
+    if($num > 0){
+      $errors[] = "User with this email already exists.";
+    }
     if (empty($name) || strlen($name)<4) {
         $errors[] = "Name is required with at least 5 characters.";
     }

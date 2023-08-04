@@ -39,7 +39,8 @@
                     $count1 = "SELECT COUNT(*) from complaints";
                     $result = mysqli_query($conn,$count1);
                     while($row=mysqli_fetch_assoc($result)){
-                        echo $row['COUNT(*)'];
+                        $count = $row['COUNT(*)'];
+                        echo "<h2>$count</h2>";
                     }
                 ?>
             </div>
@@ -47,12 +48,13 @@
         <div class="box">
             <div class="icon"><i class="fa fa-user-circle"aria-hidden="true"></i></div>
             <div class="content">
-                <h3>Total Users</h3>
+                <h2>Total Users</h2>
                 <?php
                     $count2 = "SELECT COUNT(*) from users";
                     $result = mysqli_query($conn,$count2);
                     while($row=mysqli_fetch_assoc($result)){
-                        echo $row['COUNT(*)'];
+                        $count =  $row['COUNT(*)'];
+                        echo "<h2>$count</h2>";
                     }
                 ?>
             </div>  
@@ -60,7 +62,7 @@
         <div class="box">
             <div class="icon"><i class="fa fa-paper-plane"aria-hidden="true"></i></div>
             <div class="content">
-                <a href="allcomplaint.php"><h4>View Complaints</h4></a>
+                <a href="allcomplaint.php"><h2>View Complaints</h2></a>
             </div>    
         </div>
     </div>    

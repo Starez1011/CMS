@@ -111,7 +111,7 @@ section{
 }
 .container .box:nth-child(1) {
     background-image: 
-    linear-gradient(90deg, blue,purple) ;
+    linear-gradient(90deg, rgb(75, 176, 100),purple) ;
 }
 .container .box:nth-child(2) .icon{
     background-image: 
@@ -119,7 +119,7 @@ section{
 }
 .container .box:nth-child(2) {
     background-image: 
-    linear-gradient(90deg, aqua, brown) ;
+    linear-gradient(90deg, rgb(23, 140, 140), brown) ;
 }
 .container .box:nth-child(3) .icon{
     background-image: 
@@ -139,4 +139,7 @@ a:hover {
 }
 h4{
     color:black
+}
+h2{
+    color: white;
 }
