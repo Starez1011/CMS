@@ -44,6 +44,7 @@ h1{
     padding: 50px;
     border: 50px;
     background-color: blue;
+    color: white;
 }
 section{
     padding-left: 16.5%;
@@ -52,14 +53,12 @@ section{
 }
 .container{
     position: relative;
-    width: 1200px;
-    height: 300px;
     margin: 50px auto;
 }
 .container .box{
     position: relative;
-    width: calc(400px - 30px);
-    height: calc(300px - 30px);
+    width: 350px;
+    height: 250px;
     background: yellow;
     float: left;
     margin: 15px;
@@ -130,83 +129,14 @@ section{
     background-image: 
     linear-gradient(90deg, red,purple) ;
 }
-section2{
-    padding-left: 16%;
-    justify-content: center;
-    display: flex; 
-}
-form {
-    width: 300px;
-    padding: 20px;
-    border-radius: 5px;
-    backdrop-filter: blur(20px);
-    border: 3px solid #c40909;
-    color: #f0f0f0;
-  }
   
-  h5 {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    color: #f0f0f0;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #cd1313;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background: #62050a;
-  }
-  
-  a {
+a {
     text-decoration: none;
-    color: #cd1313;
     font-weight: bold;
-  }
-  
-  a:hover {
+}
+a:hover {
     text-decoration: underline;
-  }
-  
-  footer {
-    background : linear-gradient(to right,#00093c,#2d0b00,#c40821);
-    color: #f0f0f0;
-    padding: 10px;
-    text-align: center;
-    margin-top: 20px;
-    padding: 100px 0 30px;
-    border-top-left-radius:125px;
-    
-  }
-  img{
-    height: 100px;
-  }
-  h5{
-    color: black;
-    height: 40px;
-    font-size: 60px;
-    align-items: center;
-  }
+}
+h4{
+    color:black
+}

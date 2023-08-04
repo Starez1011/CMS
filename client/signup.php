@@ -1,6 +1,7 @@
 <?php
+include 'db_connect.php';
+
 if($_SERVER['REQUEST_METHOD']=="POST"){
-    include 'db_connect.php';
     $name = $_POST["name"];
     $age = $_POST["age"];
     $gender = $_POST["gender"];
@@ -9,22 +10,52 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $email= $_POST["email"];
     $password = md5($_POST["password"]);
     $re_pass = md5($_POST["repassword"]);
-
-    if($password == $re_pass){
-        $sql="INSERT INTO `users`(`name`,`age`,`gender`,`address`,`contact_info`,`email`,`password`)
-        VALUES ('$name','$age','$gender','$address','$contact','$email','$password')";
-        $result = mysqli_query($conn,$sql);
-        if($result){
-            echo "<script>alert('Your account has been created successfully');</script>";
-            header("Location: login.php");
-        }
-        else{
-          echo "<script>alert('Password Mismatch');</script>";
-        }
+    
+    $errors = [];
+    if (empty($name) || strlen($name)<4) {
+        $errors[] = "Name is required with at least 5 characters.";
     }
-    else{
-        echo "Connection Failed";
-        
+    if (empty($age) || $age<0 || $age>130) {
+        $errors[] = "Age is invalid.";
+    }
+    if (empty($gender)) {
+        $errors[] = "Gender is required.";
+    }
+    if (empty($address)) {
+        $errors[] = "Address is required.";
+    }
+    if (empty($contact) || strlen($contact) !=10 || !is_numeric($contact)) {
+        $errors[] = "Contact is Invalid and Must be of 10 numbers.";
+    }
+    if (empty($email)) {
+        $errors[] = "Email is required.";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format.";
+    }
+    if (empty($password)) {
+        $errors[] = "Password is required.";
+    }
+    if (empty($re_pass)) {
+        $errors[] = "Please re-enter the password.";
+    } else if ($password !== $re_pass) {
+        $errors[] = "Passwords do not match.";
+    }
+
+    // If there are no validation errors, proceed with further actions
+    if (empty($errors)) {
+      $sql="INSERT INTO `users`(`name`,`age`,`gender`,`address`,`contact_info`,`email`,`password`)
+      VALUES ('$name','$age','$gender','$address','$contact','$email','$password')";
+      $result = mysqli_query($conn,$sql);
+      if($result){
+          header("Refresh: 0; url=redirect.php");
+      }else{
+        echo "<script>alert('Error occurred !!! Please try again');</script>";
+      }
+    } else {
+        // If there are validation errors, display them
+        foreach ($errors as $error) {
+            echo "$error<br>";
+        }
     }
 }
 ?>
@@ -62,7 +93,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
         </div>
         <div class="form-group">
           <label for="address">Address:</label>
-          <textarea id="address" name="address" required></textarea>
+          <input type="text" id="address" name="address" required>
         </div>
         <div class="form-group">
           <label for="contact">Contact Info:</label>
@@ -85,7 +116,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
   </div>
 
   <footer>
-    <img src="../icons/logo.jpg" class="logo">
+    <img src="../icons/l.png" class="logo">
     <p>&copy; 2023 Complaint Management System.</p>
   </footer>
 </body>

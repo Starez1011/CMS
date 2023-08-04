@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +18,11 @@
     <nav class="nav-bar">
         <div class="right">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Add Complaint</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="login.php">Log Out</a></li>
+                <li><a href="homepage.php">Home</a></li>
+                <li><a href="addcomplaint.php">Add Complaint</a></li>
+                <li><a href="faq.php">FAQ</a></li>
+                <li><a href="change.php">Change Password</a></li>
+                <li><a href="logout1.php">Log Out</a></li>
             </ul>
         </div>
         <div class="left">
@@ -23,33 +32,39 @@
         </div>
     </nav>
     <div class="animated-gradient-background">
-  <h1>Frequently Asked Questions(FQA)</h1>
+  <h1>Frequently Asked Questions(FAQ)</h1>
   
   <div class="faq-container">
     <div class="faq-item">
       <input type="checkbox" id="faq1" class="faq-toggle">
-      <label for="faq1" class="faq-question">Q: How do I file a complaint?</label>
+      <label for="faq1" class="faq-question">Q: What should I do if I'm struggling to keep up with the coursework?
+
+      </label>
       <div class="faq-answer">
-        A: To file a complaint, please visit our website and navigate to the "Add Complaint" page. There you will find a complaint form that you can fill out with the necessary details.
+        A: If you're having difficulty with coursework, don't hesitate to ask for help. Speak with your teacher, attend tutoring sessions, or join study groups with classmates who can help you better understand the material.
       </div>
     </div>
     <br>
     <br>
     <div class="faq-item">
       <input type="checkbox" id="faq2" class="faq-toggle">
-      <label for="faq2" class="faq-question">Q:What information should I include?</label>
+      <label for="faq2" class="faq-question">Q: How do I handle conflicts with fellow students or roommates at college?
+
+      </label>
       <div class="faq-answer">
-        Your contact details: Include your name, phone number, and email address so that the movie hall can reach out to you regarding the complaint.
-Date and time: Specify the date and time of your movie hall visit when the issue occurred.
+        A: Conflicts are a natural part of life, but addressing them maturely is essential. Try having an open and honest conversation with the person involved, seeking to understand their perspective, and finding a resolution that works for both of you.
+
       </div>
     </div>
     <br>
     <br>
     <div class="faq-item">
       <input type="checkbox" id="faq3" class="faq-toggle">
-      <label for="faq3" class="faq-question">Q:What should I do if I'm experiencing frequent internet outages or downtime?</label>
+      <label for="faq3" class="faq-question">Q: How can I deal with a heavy workload and academic stress in school or college?
+
+      </label>
       <div class="faq-answer">
-        If you're experiencing frequent internet outages or downtime, the first step is to contact your ISP's customer support. They can troubleshoot the issue and guide you through potential solutions. If the problem persists, you can escalate your complaint to a supervisor or consider filing a formal complaint with the ISP.
+        A: Academic stress is common, but it's essential to manage it effectively. Break tasks into smaller, manageable chunks, take short breaks during study sessions, practice mindfulness techniques, and don't hesitate to seek support from teachers or counselors.
       </div>
     </div>
   </div>

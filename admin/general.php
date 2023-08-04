@@ -1,5 +1,10 @@
 <?php
-    include 'db_connect.php';
+    session_start();
+
+    if(!isset($_SESSION['user'])){
+        header("Location: log.php");
+        exit();
+    }
 ?>
 
 <html lang="en">
@@ -15,11 +20,11 @@
 <div class="leftbar">
     <header>CMS</header>
     <ul>
-        <li><a href="#"><i class="fas fa-user-circle"></i>Profile</a></li>
-        <li><a href="#"><i class="fas fa-user "></i>User</a></li>
+        <li><a href="admin_home.php"><i class="fas fa-user-circle"></i>Profile</a></li>
+        <li><a href="admin_users.php"><i class="fas fa-user "></i>User</a></li>
         <li><a href="allcomplaint.php"><i class="fas fa-message "></i>All Complaints</a></li>
         <li><a href="#"><i class="fas fa-cog "></i>General</a></li>
-        <li><a href="log.php"><i class="fas fa-sign-out"></i>Logout</a></li>
+        <li><a href="logout.php"><i class="fas fa-sign-out"></i>Logout</a></li>
     </ul>
 </div>
 <h1>General Settings</h1>
@@ -27,6 +32,7 @@
     <div class="change-info">
         <a href="changepass.php"><button><p>Change Admin Password</p></button></a>
         <a href="removeuser.php"><button><p>Remove Users</p></button></a>
+        <a href="removecomplaint.php"><button><p>Remove Complaints</p></button></a>
     </div>
 </section>
 </body>

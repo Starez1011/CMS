@@ -1,3 +1,12 @@
+<?php
+include "db_connect.php";
+
+session_start();
+    if(!isset($_SESSION['user'])){
+        header("Location: login.php");
+        exit();
+    }
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,10 +22,11 @@
     <nav class="nav-bar">
         <div class="right">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Add Complaint</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="login.php">Log Out</a></li>
+                <li><a href="homepage.php">Home</a></li>
+                <li><a href="addcomplaint.php">Add Complaint</a></li>
+                <li><a href="faq.php">FAQ</a></li>
+                <li><a href="change.php">Change Password</a></li>
+                <li><a href="logout1.php">Log Out</a></li>
             </ul>
         </div>
         <div class="left">
@@ -26,6 +36,11 @@
         </div>
     </nav>
     <br><br>
+    <?php
+        echo "Your User Id: {$_SESSION['user']['id']}";
+        echo "<br>";
+        echo "<h2>Hello {$_SESSION['user']['name']}</h2>";
+    ?>
     <h1>Welcome to Complaint Management System</h1>
     <h2>How to complain?</h2>
     <section class="outer">

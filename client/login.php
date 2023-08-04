@@ -1,16 +1,16 @@
 <?php
+include 'db_connect.php';
+session_start();
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        include 'db_connect.php';
         $email = $_POST["email"];
         $password = md5($_POST['password']);
-
         $sql = "SELECT * FROM users WHERE email='$email' AND password='$password'";
         $result = mysqli_query($conn,$sql);
-        $num = mysqli_num_rows($result);
-        if($num==1){
-            $_SESSION['logged in']=true;
-            $_SESSION['username']=$username;
-            header("Location: homepage.html");
+        if($result && mysqli_num_rows($result) > 0){
+          $row = mysqli_fetch_assoc($result);
+          $_SESSION['user']=$row;
+            header("Location: homepage.php");
+            exit();
         }
         else{
             echo "<script>alert('Email or Password Mismatch');</script>";
@@ -51,8 +51,11 @@
   </div>
 
   <footer>
-    <img src="icons/logo.jpg" >
+    <img src="../icons/l.png" >
     <p>&copy; 2023 Complaint Management System.</p>
+    <div class="admin">
+        <a href="../admin/log.php">Admin</a>
+    </div>
   </footer>
 </body>
 </html>

@@ -44,4 +44,19 @@ h1{
     padding: 50px;
     border: 50px;
     background-color: blue;
+    color: white;
+}
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 270px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
 }

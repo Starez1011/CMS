@@ -9,36 +9,17 @@ if(!isset($_SESSION['user'])){
 include 'db_connect.php';
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    $remail = $_POST['r_email'];
-
-    $check_query = "SELECT * FROM users WHERE email = '$remail'";
-    $check_result = mysqli_query($conn, $check_query);
-
-    if(mysqli_num_rows($check_result) > 0){
-        $delete_complaints_query = "DELETE FROM complaints WHERE id IN (SELECT id FROM users WHERE email = '$remail')";
-        $delete_complaints_result = mysqli_query($conn, $delete_complaints_query);
-
-        if($delete_complaints_result){
-            $sql = "DELETE FROM users WHERE email = '$remail'";
-            $result = mysqli_query($conn, $sql);
-
-            if($result){
-                echo "<script>alert('User is successfully removed');</script>";
-            }
-            else{
-                echo "<script>alert('Error occurred while removing user');</script>";
-            }
-        }
-        else{
-            echo "<script>alert('Error occurred while deleting associated complaints');</script>";
-        }
+    $rcomplaint = $_POST['r_complaint'];
+    $sql = "DELETE from complaints where complaint_id = '$rcomplaint'";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+        echo "<script>alert('The complaint is successfully removed');</script>";
     }
     else{
-        echo "<script>alert('User does not exist');</script>";
+        echo "<script>alert('Complaint Id Mismatched or doesn't exist');</script>";
     }
 }
 ?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,13 +41,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     </ul>
 </div>
 <h1>General Settings</h1>
-    <form action="removeuser.php" method="POST">
+    <form action="removecomplaint.php" method="POST">
         <div class="change-info">
             <h2>Remove Users</h2>
             <div class="sub-div">
-                <label for="user_email">By Email:</label>
-                <input type="email" name="r_email" required>
-                <input type="submit" value="Submit">
+                <label for="complaint_id">Complaint Id:</label>
+                <input type="text" name="r_complaint" required>
+                <input type="submit" value="Delete">
             </div>
         </div>
     </form>

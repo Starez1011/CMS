@@ -91,3 +91,14 @@ body{
     font-size: 60px;
     align-items: center;
   }
+  .admin{
+    margin-right: 30px;
+    float: right;
+    font-size: 26px;
+  }
+  .admin:hover{
+    background-color: whitesmoke;
+  }
+  .admin a{
+    color: black;
+  }

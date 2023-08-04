@@ -1,18 +1,20 @@
 <?php
+include 'db_connect.php';
+  session_start();
     if($_SERVER["REQUEST_METHOD"]=="POST"){
-        include 'db_connect.php';
-        $uname = $_POST["uname"];
-        $password = ($_POST['password']);
-
-        $sql = "SELECT * FROM admin WHERE admin_uname='$uname' AND admin_password='$password'";
-        $result = mysqli_query($conn,$sql);
-        $num = mysqli_num_rows($result);
-        if($num==1){
-            header("Location: admin1.html");
-        }
-        else{
-            echo "<script>alert('Email or Password Mismatch');</script>";
-        }
+      $uname = $_POST["uname"];
+      $password = md5($_POST['password']);
+      $sql = "SELECT * FROM admin WHERE admin_uname='$uname' AND admin_password='$password'";
+      $result = mysqli_query($conn,$sql);
+      if($result && mysqli_num_rows($result) > 0){
+        $data = mysqli_fetch_assoc($result);
+          $_SESSION['user']=$data;
+          header("Location: admin_home.php");
+          exit();
+      }
+      else{
+        echo "<script>alert('Email or Password Mismatch');</script>";
+      }
     }
 ?>
 
@@ -38,12 +40,13 @@
       </div>
       <div class="form-group">
         <button type="submit">Login</button>
+        <a href="../client/login.php">User Login</a>
       </div>
     </form>
   </div>
 
   <footer>
-    <img src="../icons/logo.jpg" >
+    <img src="../icons/l.png" >
     <p>&copy; 2023 Complaint Management System.</p>
   </footer>
 </body>

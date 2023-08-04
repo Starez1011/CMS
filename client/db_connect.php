@@ -2,7 +2,7 @@
     $servername="localhost";
     $username="root";
     $password="";
-    $database="cms";
+    $database="cms1";
 
     $conn=mysqli_connect($servername,$username,$password,$database);
 
